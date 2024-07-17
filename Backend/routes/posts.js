@@ -110,7 +110,7 @@ router.get("/", async (req, res) => {
                     { username: { $regex: query.search, $options: "i" } }
                 ]
             }),
-            ...(query.category && { category: query.category }), // Ensure this matches your schema
+            ...(query.category && { categorie: query.category }), // Ensure this matches your schema
         };
         const totalPosts = await Post.countDocuments();
 
