@@ -47,7 +47,7 @@ router.post("/login", async (req, res) => {
         if (!user) {
             return res.status(404).json("User not found!")
         }
-        if (user.verified = false) {
+        if (user.verified === false) {
             return res.status(404).json("User Email Not Verified")
 
 
