@@ -19,13 +19,19 @@ router.post("/", async (req, res) => {
                 .send({ message: "Not the User" });
 
 
-        await sendEmail(user.email, req.body.subject, req.body.message);
+        await sendEmail(process.env.USER, req.body.subject, `${req.body.message} from ${user.email}`);
 
         res.status(200).send({ message: `Thank you ${user.username}, your Reaspoce is recived` });
     } catch (error) {
         res.status(500).send({ message: "Internal Server Error" });
     }
 });
+
+
+
+
+
+
 
 export default router
 
