@@ -33,6 +33,7 @@ const PostData = ({ post }) => {
         
         {/* Render HTML content snippet */}
         <div  dangerouslySetInnerHTML={{ __html: extractTextFromHTML(post && post.desc.slice(0, 200)) }}></div>
+        <p>Read article...</p>
       </div>
     </div>
   );
