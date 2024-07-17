@@ -134,7 +134,7 @@ useEffect(()=>{
               onChange={(e) => setFile(e.target.files[0])}
 
             />
-            <h1 className='font-semibold'>maxSize: 2MB</h1>
+            <h1 className='font-semibold'> {file?"Click on upload and wait for preview":"maxSize: 2MB"}</h1>
             <Button
               type='button'
               gradientDuoTone='purpleToBlue'
