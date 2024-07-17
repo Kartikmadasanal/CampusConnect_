@@ -26,13 +26,17 @@ export default function Dashboard() {
    
       <Navbar className='border-b-2 dark:bg-[#121212] '>
 
-        <div
-          className='self-center flex  whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'
-        >
-          <GiFeather />          <span className='py-1  rounded-lg text-red font-sans '>
-            CampusConnect
-          </span>
-        </div>
+             <Link
+        to='/'
+        className='self-center flex  whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'
+      >
+
+        <GiFeather />
+        <span className='py-1  rounded-lg text-red font-sans '>
+          CampusConnect
+        </span>
+      </Link>
+        
 
 
         <Navbar.Collapse>
