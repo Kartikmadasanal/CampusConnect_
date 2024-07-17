@@ -53,6 +53,37 @@ router.get("/:id",async (req,res)=>{
 })
 
 
+router.get("/", async (req, res) => {
+    const query = req.query;
+
+    try {
+        const searchFilter={
+            ...(query.search && {
+            username:{$regex:query.search, $options:"i"}}
+        )}
+        const users = await User.find(searchFilter).sort({ createdAt: -1 });
+        
+        // Exclude password from each user document
+        const usersWithoutPassword = users.map(user => {
+            const { password, ...rest } = user._doc;
+            return rest;
+        });
+  
+        const totalUsers = await User.countDocuments();
+  
+        // Send response with users without passwords and total count
+        res.status(200).json({
+            users: usersWithoutPassword,
+            totalUsers: totalUsers
+        });
+    } catch (error) {
+        res.status(400).json(error); // Pass error to error handling middleware
+    }
+})
+
+
+
+
 
 
 

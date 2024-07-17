@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Alert, Button, Modal, ModalBody, TextInput } from 'flowbite-react';
 import Header from '../Components/Header';
 import FooterBar from '../Components/Footer';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { URL } from '../url';
 import Loader from '../Components/Lodear';
@@ -18,17 +18,17 @@ function Profilepage() {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   const param = useParams()
-  const [updatesdata,setUpdateddata] = useState({})
+  const [updatesdata, setUpdateddata] = useState({})
   const navigate = useNavigate()
-  const [userdata, setusedata] = useState({}) 
+  const [userdata, setusedata] = useState({})
   const [updated, setUpdated] = useState(false)
 
-  
+
   const fetchProfile = async () => {
     try {
       const res = await axios.get(URL + "/api/users/" + currentUser._id)
 
-       setusedata(res.data)
+      setusedata(res.data)
       //  console.log(res.data)
     }
     catch (err) {
@@ -36,7 +36,7 @@ function Profilepage() {
     }
   }
 
-  const handleUserUpdate=async (event)=>{
+  const handleUserUpdate = async (event) => {
 
 
     event.preventDefault()
@@ -54,13 +54,13 @@ function Profilepage() {
       );
       // console.log(res.data);
       setUpdated(true);
-    } 
-    
-    catch(err){
+    }
+
+    catch (err) {
       console.log(err)
       setUpdated(false)
     }
-  
+
   }
 
   const handleUserDelete = async () => {
@@ -68,10 +68,10 @@ function Profilepage() {
     // alert("Are you sure  ?")
     try {
       await axios.delete(URL + "/api/users/" + currentUser._id)
-      localStorage.removeItem("user");
+      localStorage.removeItem("token");
       // window.location.reload();
-      
-      await clearCookie("token",{sameSite:"none",secure:true})
+      dispatch(signoutSuccess());
+
       navigate("/login")
       // console.log(res.data)
 
@@ -89,8 +89,8 @@ function Profilepage() {
       localStorage.removeItem("token");
       dispatch(signoutSuccess())
       navigate("/login");
-    } 
-  
+    }
+
     catch (err) {
       console.log(err)
     }
@@ -101,7 +101,7 @@ function Profilepage() {
     fetchProfile()
 
   }, [param.id])
-// console.log(user)
+  // console.log(user)
 
   if (!currentUser) {
 
@@ -157,6 +157,12 @@ function Profilepage() {
               outline
             >Update
             </Button>
+            {currentUser.isAdmin && (
+              <Link to={"/dashboard"}><Button
+                gradientDuoTone='purpleToBlue'
+                outline
+              >Go To Admin
+              </Button></Link>)}
           </form>
           {updated && <h3 className="text-green-500 text-sm text-center mt-4">user updated successfully!</h3>}
 

@@ -18,9 +18,11 @@ function Home() {
   const fetchPosts = async () => {
     setLoader(true)
     try {
+      // console.log(search)
       const res = await axios.get(URL + "/api/posts/" + search)
-      // console.log(res.data)
-      setPosts(res.data)
+
+      // console.log(res.data.totalPosts)
+      setPosts(res.data.posts)
       // console.log(res)
       if (res.data.length === 0) {
         setNoResults(true)

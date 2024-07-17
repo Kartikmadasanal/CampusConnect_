@@ -15,6 +15,8 @@ import ForgetPasword from "./Pages/ForgetPassword"
 import PasswordReset from "./Pages/PasswordRest"
 import { useSelector, useDispatch } from 'react-redux'
 import { UserContextProvider } from './context/UserContext.jsx'
+import Dashboard from "./Pages/Dashboard.jsx"
+import OnlyAdminPrivateRoute from "./Components/OnlyAdminPrivateRoute.jsx"
 
 
 
@@ -42,6 +44,13 @@ export default function App() {
         <Route path="/myblogs/:id" element={<Myblogs/>}/>
         <Route path="/forgot-password" element={<ForgetPasword/>} />
 			<Route path="/password-reset/:id/:token" element={<PasswordReset/>} />
+
+
+
+      <Route element={<OnlyAdminPrivateRoute />}>
+          <Route path='/dashboard' element={<Dashboard/>} />
+        </Route>
+
       </Routes>
       
 

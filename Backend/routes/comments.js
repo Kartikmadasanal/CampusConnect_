@@ -62,4 +62,33 @@ router.get("/post/:postId",async (req,res)=>{
 })
 
 
+
+
+router.get("/",async (req,res)=>{
+    const query = req.query;
+    
+    try{
+        const searchFilter={
+            ...(query.search && {
+            author:{$regex:query.search, $options:"i"}}
+        )}
+
+        const comments=await Comment.find(searchFilter).sort({ createdAt: -1 });
+        const totalComments = await Comment.countDocuments();
+        res.status(200).json({
+            comments:comments,
+            totalComments:totalComments,
+        })
+    }
+    catch(err){
+        res.status(500).json(err)
+    }
+})
+
+
+
+
+
+
+
 export default router

@@ -40,7 +40,7 @@ function Editpost() {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         },
-        withCredentials: true
+        withCredentials: true 
       })
       navigate("/posts/post/"+res.data._id)
       // console.log(res.data)

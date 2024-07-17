@@ -112,9 +112,10 @@ router.get("/", async (req, res) => {
             }),
             ...(query.category && { category: query.category }), // Ensure this matches your schema
         };
+        const totalPosts = await Post.countDocuments();
 
-        const posts = await Post.find(searchFilter).sort({ createdAt: -1 });
-        res.status(200).json(posts);
+        const Allposts = await Post.find(searchFilter).sort({ createdAt: -1 });
+        res.status(200).json({posts:Allposts , totalPosts:totalPosts,});
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

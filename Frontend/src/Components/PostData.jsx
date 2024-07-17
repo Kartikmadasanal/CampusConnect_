@@ -32,7 +32,7 @@ const PostData = ({ post }) => {
         </div>
         
         {/* Render HTML content snippet */}
-        <div dangerouslySetInnerHTML={{ __html: extractTextFromHTML(post && post.desc.slice(0, 200)) }}></div>
+        <div  dangerouslySetInnerHTML={{ __html: extractTextFromHTML(post && post.desc.slice(0, 200)) }}></div>
       </div>
     </div>
   );
