@@ -124,7 +124,7 @@ export default function DashPosts() {
                   <Table.Cell>
                     <Link to={`/posts/post/${post._id}`}>
                       <img
-                        src={post.image}
+                        src={post.photo}
                         alt={post.title}
                         className='w-20 h-10 object-cover bg-gray-500'
                       />
