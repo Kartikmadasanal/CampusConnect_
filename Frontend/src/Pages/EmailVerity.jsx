@@ -25,7 +25,6 @@ import { URL } from "../url";
 
   return (
     <div className="min-h-screen pt-36 mx-auto  max-w-lg">
-{validUrl ? (
     <Card className="max-w-sm">
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         Verify youe email address
@@ -47,7 +46,7 @@ import { URL } from "../url";
       </Link>
       </Button>
     </Card>
-):(<div><h1>404 Not Found </h1></div>)}
+
     </div>
 
   );
